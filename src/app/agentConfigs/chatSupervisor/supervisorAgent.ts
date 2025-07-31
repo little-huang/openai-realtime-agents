@@ -316,4 +316,29 @@ export const getNextResponseFromSupervisor = tool({
     return { nextResponse: finalText as string };
   },
 });
-  
+
+export const getWeatherTool = tool({
+  name: 'getWeather',
+  description: '获取天气信息',
+  parameters: {
+    type: 'object',
+    properties: {
+      city: {
+        type: 'string',
+        description: '城市名称',
+      },
+    },
+    required: ['city'],
+    additionalProperties: false,
+  },
+  execute: async (input, details) => {
+    
+    const { city } = input as {
+      city: string;
+    };
+
+    console.log('city', city);
+    return { weather: '晴天' };
+
+  }
+})
