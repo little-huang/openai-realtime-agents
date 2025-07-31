@@ -179,10 +179,10 @@ function App() {
   }, [isPTTActive]);
 
   const fetchEphemeralKey = async (): Promise<string | null> => {
-    logClientEvent({ url: "/session" }, "fetch_session_token_request");
+    logClientEvent({ url: "/session" }, "获取会话令牌请求");
     const tokenResponse = await fetch("/api/session");
     const data = await tokenResponse.json();
-    logServerEvent(data, "fetch_session_token_response");
+    logServerEvent(data, "获取会话令牌响应");
 
     if (!data.client_secret?.value) {
       logClientEvent(data, "error.no_ephemeral_key");
@@ -449,12 +449,12 @@ function App() {
             />
           </div>
           <div>
-            Realtime API <span className="text-gray-500">Agents</span>
+            实时音频 <span className="text-gray-500">Agents</span>
           </div>
         </div>
         <div className="flex items-center">
           <label className="flex items-center text-base gap-1 mr-2 font-medium">
-            Scenario
+            场景
           </label>
           <div className="relative inline-block">
             <select

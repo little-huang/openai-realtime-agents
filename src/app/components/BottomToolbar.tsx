@@ -41,9 +41,9 @@ function BottomToolbar({
   };
 
   function getConnectionButtonLabel() {
-    if (isConnected) return "Disconnect";
-    if (isConnecting) return "Connecting...";
-    return "Connect";
+    if (isConnected) return "断开连接";
+    if (isConnecting) return "连接中...";
+    return "连接";
   }
 
   function getConnectionButtonClasses() {
@@ -81,7 +81,7 @@ function BottomToolbar({
           htmlFor="push-to-talk"
           className="flex items-center cursor-pointer"
         >
-          Push to talk
+          按住说话
         </label>
         <button
           onMouseDown={handleTalkButtonDown}
@@ -95,7 +95,7 @@ function BottomToolbar({
             (!isPTTActive ? " bg-gray-100 text-gray-400" : "")
           }
         >
-          Talk
+          说话
         </button>
       </div>
 
@@ -112,7 +112,7 @@ function BottomToolbar({
           htmlFor="audio-playback"
           className="flex items-center cursor-pointer"
         >
-          Audio playback
+          音频播放
         </label>
       </div>
 
@@ -125,12 +125,12 @@ function BottomToolbar({
           className="w-4 h-4"
         />
         <label htmlFor="logs" className="flex items-center cursor-pointer">
-          Logs
+          日志
         </label>
       </div>
 
       <div className="flex flex-row items-center gap-2">
-        <div>Codec:</div>
+        <div>编码:</div>
         {/*
           Codec selector – Lets you force the WebRTC track to use 8 kHz 
           PCMU/PCMA so you can preview how the agent will sound 
