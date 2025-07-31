@@ -452,8 +452,10 @@ function App() {
             实时音频 <span className="text-gray-500">Agents</span>
           </div>
         </div>
+
         <div className="flex items-center">
-          <label className="flex items-center text-base gap-1 mr-2 font-medium">
+          
+          {/* <label className="flex items-center text-base gap-1 mr-2 font-medium">
             场景
           </label>
           <div className="relative inline-block">
@@ -477,7 +479,7 @@ function App() {
                 />
               </svg>
             </div>
-          </div>
+          </div> */}
 
           {agentSetKey && (
             <div className="flex items-center ml-6">
@@ -513,6 +515,7 @@ function App() {
             </div>
           )}
         </div>
+
       </div>
 
       <div className="flex flex-1 gap-2 px-2 overflow-hidden relative">

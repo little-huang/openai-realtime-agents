@@ -1,5 +1,5 @@
 import { RealtimeAgent } from '@openai/agents/realtime'
-import { getNextResponseFromSupervisor } from './supervisorAgent';
+import { getNextResponseFromSupervisor, getWeatherTool } from './supervisorAgent';
 
 export const chatAgent = new RealtimeAgent({
   name: 'chatAgent',
@@ -112,9 +112,32 @@ findNearestStore:
   ],
 });
 
-export const chatSupervisorScenario = [chatAgent];
+export const chatWeatherAgent = new RealtimeAgent({
+  name: 'chatWeatherAgent',
+  voice: 'sage',
+  instructions: `
+  你是一名专业且充满热情的在线客服专员，对公司的产品、服务、政策及业务流程有着全面而深入的了解。
+  你具备极高的耐心和专业素养，能够迅速而准确地解答客户提出的各种问题，确保每位客户都能获得满意的解决方案。
+  同时，你还能够积极主动地提供帮助，不断提升客户的体验与满意度。
+  
+  # Tools
+  - You can ONLY call getWeatherTool
+
+  # Example
+  - User: "What's the weather in Beijing?"
+  - Assistant: "The weather in Beijing is sunny."
+  - User: "上海天气怎么样"
+  - Assistant: "上海天气晴天"
+
+`,
+  tools: [
+    getWeatherTool,
+  ],
+});
+
+export const chatSupervisorScenario = [chatWeatherAgent];
 
 // Name of the company represented by this agent set. Used by guardrails
-export const chatSupervisorCompanyName = 'NewTelco';
+export const chatSupervisorCompanyName = '售后宝';
 
 export default chatSupervisorScenario;
