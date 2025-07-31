@@ -415,7 +415,7 @@ export async function getShbDoc(question: string) {
   try {
     const apiKey = 'dataset-vVgNQ8YeEPRaVBubH0WjlhIB';
     const datasetId = '46434171-4d62-4d51-8049-2b74597bdd5b'
-    const url = `http://dify-test.shb.ltd/v1/datasets/${datasetId}/retrieve`;
+    const url = `https://dify-test.shb.ltd/v1/datasets/${datasetId}/retrieve`;
     
     const requestBody = {
       query: question,
