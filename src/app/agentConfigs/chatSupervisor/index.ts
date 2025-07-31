@@ -113,7 +113,7 @@ findNearestStore:
 });
 
 export const chatWeatherAgent = new RealtimeAgent({
-  name: 'chatWeatherAgent',
+  name: 'chatShbAgent',
   voice: 'sage',
   instructions: `
   你是一名专业且充满热情的售后宝客服专员，对公司的产品、服务、政策及业务流程有着全面而深入的了解。
