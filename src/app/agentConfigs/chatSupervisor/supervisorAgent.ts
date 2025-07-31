@@ -326,19 +326,58 @@ export const getWeatherTool = tool({
       city: {
         type: 'string',
         description: '城市名称',
-      },
+      }
     },
     required: ['city'],
     additionalProperties: false,
   },
   execute: async (input, details) => {
     
-    const { city } = input as {
+    const { city, time } = input as {
       city: string;
+      time: string;
     };
 
-    console.log('city', city);
-    return { weather: '晴天' };
+    console.log('getWeatherTool city', city);
+
+    const weather = await getWeather(city);
+
+    return weather
 
   }
 })
+
+async function getWeather(city: string) {
+  try {
+
+    // 将参数写成对象
+    const baseUrl = 'https://api.seniverse.com/v3/weather/now.json';
+    const params = {
+      key: 'SCvcZwQMBHJrA8eRo',
+      location: city,
+      language: 'zh-Hans',
+      unit: 'c'
+    };
+    
+    // 使用 URLSearchParams 构建查询字符串
+    const searchParams = new URLSearchParams(params);
+    const url = `${baseUrl}?${searchParams}`;
+    
+    console.log('getWeather 请求 URL:', url);
+    
+    const response = await fetch(url);
+    
+    if (!response.ok) {
+      throw new Error(`getWeather HTTP error! status: ${response.status}`);
+    }
+    
+    const data = await response.json();
+    
+    console.log('getWeather 天气数据:', JSON.stringify(data));
+    
+    return data;
+  } catch (error) {
+    console.error('getWeather 获取天气数据失败:', error);
+    throw error;
+  }
+}
